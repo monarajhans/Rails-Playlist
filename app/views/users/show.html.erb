@@ -1,0 +1,39 @@
+
+
+<h1>Hello <%= @user.first_name %> <%= @user.last_name %>!</h1>
+<h3>All songs in our hub: </h3>
+
+<table class="table-striped">
+	<tr>
+		<th style="padding: 10px;">Song</th>
+		<th style="padding: 10px;">Artist</th>
+		<th style="padding: 10px;">Count</th>
+		<th style="padding: 10px;">Add</th>
+	</tr>
+
+	<% @playlists.each do |p| %>
+
+	<tr>
+		<td style="padding: 10px;"><a href="/playlists/<%= p.id %>"><%= p.song %></a></td>
+		<td style="padding: 10px;"><%= p.artist %></td>
+		<td style="padding: 10px;"><%= p.count %> added</td>
+		<td style="padding: 10px;">
+			<form action="/playlists/<%= p.id %>" method="post">
+				<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+				<input type="submit" value="Add">
+			</form>
+		</td>
+	</tr>
+
+	<% end %>
+</table>
+
+<h1>Add a song</h1>
+<form action="/playlists" method="post">
+	<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+	<p><label for="playlist_song">Title: </label>
+	<input type="text" id="playlist_song" name="playlist[song]"></p>
+	<p><label for="playlist_artist">Artist: </label>
+	<input type="text" id="playlist_artist" name="playlist[artist]"></p>
+	<p><input type="submit" value="Add Song"></p>
+</form>

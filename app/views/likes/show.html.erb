@@ -1,0 +1,20 @@
+<a href="/users/<%= session[:user_id] %>">Dashboard</a>
+<h1><%= @user.first_name %> <%= @user.last_name %>'s Playlist</h1>
+
+<table class="table-striped">
+	<tr>
+		<th style="padding: 10px;">Song</th>
+		<th style="padding: 10px;">Artist</th>
+		<th style="padding: 10px;">Count</th>
+	</tr>
+
+	<% @playlist.each do |p| %>
+
+	<tr>
+		<td style="padding: 10px;"><a href="/playlists/<%= p.id %>"><%= p.song %></a></td>
+		<td style="padding: 10px;"><%= p.artist %></td>
+		<td style="padding: 10px;"><%= p.count %> added</td>
+	</tr>
+
+	<% end %>
+</table>

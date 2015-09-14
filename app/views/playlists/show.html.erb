@@ -1,0 +1,7 @@
+<a href="/users/<%= session[:user_id] %>">Dashboard</a>
+
+<h2>Others who added <%= @song.song %> - <%= @song.artist %></h2>
+
+<% @playlist.each do |p| %>
+	<p><a href="/likes/<%= p.id %>"><%= p.first_name %> <%= p.last_name %></a></p>
+<% end %>
